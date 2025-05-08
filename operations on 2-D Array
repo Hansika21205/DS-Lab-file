@@ -1,0 +1,79 @@
+#include <stdio.h>
+
+#define ROW 3
+#define COL 3
+
+void addMatrices(int A[ROW][COL], int B[ROW][COL], int result[ROW][COL]) {
+    for (int i = 0; i < ROW; i++) {
+        for (int j = 0; j < COL; j++) {
+            result[i][j] = A[i][j] + B[i][j];
+        }
+    }
+}
+
+
+void subtractMatrices(int A[ROW][COL], int B[ROW][COL], int result[ROW][COL]) {
+    for (int i = 0; i < ROW; i++) {
+        for (int j = 0; j < COL; j++) {
+            result[i][j] = A[i][j] - B[i][j];
+        }
+    }
+}
+
+void multiplyMatrices(int A[ROW][COL], int B[ROW][COL], int result[ROW][COL]) {
+    for (int i = 0; i < ROW; i++) {
+        for (int j = 0; j < COL; j++) {
+            result[i][j] = 0;
+            for (int k = 0; k < COL; k++) {
+                result[i][j] += A[i][k] * B[k][j];
+            }
+        }
+    }
+}
+
+void transposeMatrix(int A[ROW][COL], int result[ROW][COL]) {
+    for (int i = 0; i < ROW; i++) {
+        for (int j = 0; j < COL; j++) {
+            result[j][i] = A[i][j];
+        }
+    }
+}
+
+void printMatrix(int matrix[ROW][COL]) {
+    for (int i = 0; i < ROW; i++) {
+        for (int j = 0; j < COL; j++) {
+            printf("%d ", matrix[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int A[ROW][COL] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+    int B[ROW][COL] = {{9, 8, 7}, {6, 5, 4}, {3, 2, 1}};
+    int result[ROW][COL];
+
+    printf("Matrix A:\n");
+    printMatrix(A);
+    printf("Matrix B:\n");
+    printMatrix(B);
+
+    addMatrices(A, B, result);
+    printf("Addition of matrices:\n");
+    printMatrix(result);
+
+    subtractMatrices(A, B, result);
+    printf("Subtraction of matrices:\n");
+    printMatrix(result);
+
+    multiplyMatrices(A, B, result);
+    printf("Multiplication of matrices:\n");
+    printMatrix(result);
+
+    transposeMatrix(A, result);
+    printf("Transpose of Matrix A:\n");
+    printMatrix(result);
+
+    return 0;
+}
+
