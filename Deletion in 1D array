@@ -1,0 +1,44 @@
+ include <stdio.h>
+
+void deleteElement(int arr[], int *size, int position) {
+    if (*size == 0) {
+        printf("Array is empty! Cannot delete.\n");
+        return;
+    }
+    
+    if (position < 1 || position > *size) {
+        printf("Invalid position! Position should be between 1 and %d\n", *size);
+        return;
+    }
+    
+    for (int i = position - 1; i < *size - 1; i++) {
+        arr[i] = arr[i + 1];
+    }
+    
+    (*size)--; 
+}
+
+void printArray(int arr[], int size) {
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    int arr[10] = {10, 20, 30, 40, 50}; // Initial array
+    int size = 5; // Current size of the array
+    
+    printf("Original Array: ");
+    printArray(arr, size);
+    
+    int position = 3;
+    printf("Deleting element at position %d\n", position);
+    deleteElement(arr, &size, position);
+    
+    printf("Updated Array: ");
+    printArray(arr, size);
+    
+    return 0;
+}
+
